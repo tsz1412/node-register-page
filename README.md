@@ -23,6 +23,12 @@ If you need to stop and remove all containers, networks, and all images used by 
 ```bash
 docker-compose down --rmi all
 ```
+## Take DB Backup
+Run the following command.
+
+`docker exec site_mysql /usr/bin/mysqldump -u root --password={rootpassword} {dbnametobackup} > {dumpfilename}.sql`
+
+Remember ro replace `{rootpassword} {dbnametobackup} {dumpfilename.sql}` with the root password, name of the database to back up, and name of the dumpfile respectively.
 
 For more detail, please visit:
 > [Dockerize Node.js Express and MySQL example - Docker Compose](https://www.bezkoder.com/docker-compose-nodejs-mysql/)

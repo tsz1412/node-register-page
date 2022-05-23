@@ -13,6 +13,7 @@ services:
       - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
     volumes:
       - db:/var/lib/mysql
+      - ./database/dumps:/docker-entrypoint-initdb.d
   frontend:
     container_name: intego_frontend
     image: nginx
@@ -20,6 +21,7 @@ services:
       - 9000:80
     volumes:
       - ./frontend/dist:/usr/share/nginx/html
+
   app:
     depends_on:
       - mysqldb
