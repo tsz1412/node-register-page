@@ -2,14 +2,30 @@ const db = require("../models");
 const User = db.users;
 const Op = db.Sequelize.Op;
 
+function isEmailValid(enteredEmail)
+{
+  const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(enteredEmail);
+}
+
 // Create and Save a new User
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.name || !req.body.company_name || !req.body.email || !req.body.password) {
+  if (!req.body.name || !req.body.email || !req.body.password) {
     res.status(400).send({
+      result: "failure",
+      type: "empty-body",
       message: "Content can not be empty!"
     });
     return;
+  }
+  if (!isEmailValid(req.body.email)){
+     res.status(400).send({
+       result: "failure",
+       type: "invalid-email",
+       message: "Wrong email address, please try again"
+     });
+     return;
   }
 
   // Create a User
