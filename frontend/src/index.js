@@ -3,6 +3,7 @@ import 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery-validation'
+import '@fortawesome/fontawesome-free';
 /* Local Files */
 import './style.scss';
 import './requests';
@@ -22,16 +23,15 @@ $(document).ready(function(){
             }
         },
         submitHandler: function(e){
+            $('.loader').removeClass('hidden');
             const args = JSON.stringify({
                 "name": $('#adminName').val(),
                 "email": $('#email').val(),
                 "company_name": $('#companyName').val(),
                 "password": $('#password').val()
             });
+            registerRequest(args);
 
-            console.log(args)
-            registerRequest(args)
-            console.log('foo')
         }
     });
 });

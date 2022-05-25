@@ -8,6 +8,11 @@ export function registerRequest(args){
         },
         data: args,
         success: function( data ) {
+            $('.loader').addClass('hidden');
+            $('.user-register-section').addClass('hidden');
+            $('.user-register-confirmation-section').removeClass('hidden');
+            $('.steps .step-2 .bullet').addClass('current');
+            $('.steps .steps-bar').addClass('completed');
             console.log(data)
         },
         error: function(xhr, status, error) {
