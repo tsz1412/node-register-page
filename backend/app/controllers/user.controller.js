@@ -8,6 +8,7 @@ function isEmailValid(enteredEmail)
   return re.test(enteredEmail);
 }
 
+
 // Create and Save a new User
 exports.create = (req, res) => {
   // Validate request
