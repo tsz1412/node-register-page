@@ -11,7 +11,7 @@ function isEmailValid(enteredEmail)
 // Create and Save a new User
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.name || !req.body.email || !req.body.password) {
+  if (!req.body.name || !req.body.email || !req.body.password || !req.body.company_name ) {
     res.status(400).send({
       result: "failure",
       type: "empty-body",
@@ -33,7 +33,7 @@ exports.create = (req, res) => {
     email: req.body.email,
     password: req.body.password,
     company_name: req.body.company_name,
-    name: req.body.company_name,
+    name: req.body.name,
   };
 
   // Save User in the database
