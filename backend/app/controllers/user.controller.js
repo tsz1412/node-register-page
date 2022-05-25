@@ -1,7 +1,7 @@
 const db = require("../models");
 const User = db.users;
 const Op = db.Sequelize.Op;
-
+const Crypto = require('crypto');
 function isEmailValid(enteredEmail)
 {
   const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -29,12 +29,16 @@ exports.create = (req, res) => {
   }
 
   // Create a User
+  const salt = Crypto.randomBytes(16).toString('hex');
+  const hash = Crypto.pbkdf2Sync(req.body.password, salt, 1000, 64, `sha512`).toString('hex');
+
   const user = {
     email: req.body.email,
-    password: req.body.password,
     company_name: req.body.company_name,
     name: req.body.name,
+    password: hash
   };
+
 
   // Save User in the database
   User.create(user)
