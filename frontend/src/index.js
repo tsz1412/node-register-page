@@ -10,6 +10,13 @@ import './requests';
 import {registerRequest} from "./requests";
 
 $(document).ready(function(){
+
+    $("#toggle_pwd").click(function () {
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var type = $(this).hasClass("fa-eye-slash") ? "text" : "password";
+        $("#password").attr("type", type);
+    });
+
     $('#register-user').validate({
         rules: {
             // simple rule, converted to {required:true}

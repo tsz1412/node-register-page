@@ -1,5 +1,10 @@
 @import url("https://use.typekit.net/isj3mpw.css");
 @import url("../src/animations.scss");
+//importing font awesome
+//importing font awesome
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
 $darkBlue : #161963;
 $white : #FFFFFF;
 $gray: #C6C6C6;
@@ -7,7 +12,10 @@ body{
   font-family: muli, sans-serif;
 }
 .decorative-col{
-  height: 658px;
+  height: 240px;
+  @media (min-width: 658px) {
+    height: 658px;
+  }
   background-size: cover;
   background-position: center right;
 }
@@ -109,4 +117,26 @@ body{
 
 #loader-wrapper .loader-section.section-right {
   right: 0;
+}
+.form-group{
+  position: relative;
+  .toggle_pwd{
+    position: absolute;
+    right: 20px;
+    top: 0;
+    line-height: 84px;
+  }
+}
+.registration{
+  > .container-fluid{
+    width: 80%;
+  }
+}
+#register-user{
+    .form-row {
+      padding: 18px 0;
+    }
+}
+h1, h2{
+  padding: 20px 0;
 }
